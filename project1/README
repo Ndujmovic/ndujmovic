@@ -1,0 +1,421 @@
+PROJECT 1
+Nancy Dujmovic
+
+====
+tf_idf.rb
+====
+
+This file contains all the functionality needed to find the cosine similarities between two files.  It also contains additional string and array functions that come in handy when tokenizing or calculating the mean or magnitude^2.  If I had additional time, I would create a class with instance variables for the directory of files and your delicious username, and then it would have a few functions that find the word counts, the idf of each term, etc.
+
+====
+get_delicious.rb
+====
+
+This file contains a class with a few static methods -- finding all the delicious links by user/password or user/password/tag and making an HTTP request and returning the body of the response.  The method ignores responses that do not have a status of 200.
+
+====
+classify_delicious.rb
+====
+
+This file creates the classifier, trains it on my delicious links (making additional HTTP requests to delicious.com), and then classifies the others' links.  The SAMPLE OUTPUT section gives an excerpt of the output.
+
+====
+step1.rb
+====
+
+This file reads the YAML file, grabs the delicious links, and outputs the content to the temp directory.
+
+====
+step2.rb
+====
+
+This file reads from the temp directory and calculates the cosine similarity between each file, along with the outliers from my file.
+
+====
+SAMPLE OUTPUT
+====
+
+A list of the cosine similarities between users' delicious links
+
+(tempdir/jhu_mcgilman.txt and tempdir/jhu_jfrankford.txt): 0.228532844542112
+(tempdir/jhu_jfrankford.txt and tempdir/jhu_aggraham.txt): 0.224662321393989
+(tempdir/jhu_jfrankford.txt and tempdir/jhu_charlesh.txt): 0.0916662777709964
+(tempdir/sunspot82.txt and tempdir/jhu_jway1.txt): 0.00363484508446794
+(tempdir/jhu_charlesh.txt and tempdir/jhu_aggraham.txt): 0.154032968980719
+(tempdir/jhu_p.txt and tempdir/jhu_aggraham.txt): 0.23972121790011
+(tempdir/jhu_p.txt and tempdir/jhu_charlesh.txt): 0.0535864170771291
+(tempdir/sunspot82.txt and tempdir/jhu_aggraham.txt): 0.051578198259775
+(tempdir/sunspot82.txt and tempdir/jhu_charlesh.txt): 0.016211602593737
+(tempdir/jhu_mcgilman.txt and tempdir/jhu_jway1.txt): 0.00213977019313482
+(tempdir/jhu_p.txt and tempdir/jhu_ndujmovic.txt): 0.0511895047035767
+(tempdir/jhu_ndujmovic.txt and tempdir/jhu_mcgilman.txt): 0.159366288155058
+(tempdir/jhu_ndujmovic.txt and tempdir/jhu_jway1.txt): 0.00967175727611413
+(tempdir/jhu_p.txt and tempdir/jhu_jway1.txt): 0.00311015995800731
+(tempdir/jhu_jway1.txt and tempdir/jhu_jfrankford.txt): 0.00304309929601308
+(tempdir/jhu_p.txt and tempdir/jhu_mcgilman.txt): 0.088581018123162
+(tempdir/sunspot82.txt and tempdir/jhu_mcgilman.txt): 0.0533063585707848
+(tempdir/jhu_ndujmovic.txt and tempdir/jhu_jfrankford.txt): 0.144047706344031
+(tempdir/sunspot82.txt and tempdir/jhu_p.txt): 0.0141681322286514
+(tempdir/jhu_jway1.txt and tempdir/jhu_aggraham.txt): 0.00176303008623098
+(tempdir/jhu_jway1.txt and tempdir/jhu_charlesh.txt): 0.00146443716831287
+(tempdir/jhu_p.txt and tempdir/jhu_jfrankford.txt): 0.0753413354215474
+(tempdir/sunspot82.txt and tempdir/jhu_jfrankford.txt): 0.0470563204162619
+(tempdir/sunspot82.txt and tempdir/jhu_ndujmovic.txt): 0.045813594371579
+(tempdir/jhu_ndujmovic.txt and tempdir/jhu_aggraham.txt): 0.165030911346203
+(tempdir/jhu_ndujmovic.txt and tempdir/jhu_charlesh.txt): 0.132519555439216
+(tempdir/jhu_mcgilman.txt and tempdir/jhu_aggraham.txt): 0.302105850899309
+(tempdir/jhu_mcgilman.txt and tempdir/jhu_charlesh.txt): 0.0980190999046435
+
+
+Here's a list of outliers from my linked pages:
+
+things
+color
+than
+think
+now
+type
+have
+day
+into
+height
+travel
+microsoft
+start
+python
+part
+series
+for
+    php
+    write
+    never
+    strings
+    july
+    style
+    padding
+    post
+    can
+    great
+    know
+    quot
+    learn
+    about
+    information
+    menu
+    days
+    top
+    cond
+    need
+    still
+    else
+        java
+        time
+        string
+        text
+        web
+        game
+        these
+        program
+        span
+        barcelona
+        but
+        last
+        when
+        good
+        make
+        don
+        server
+        there
+        document
+        comments
+        programming
+        only
+        width
+        well
+        every
+        name
+        your
+        left
+        www
+        get
+        data
+        aug
+        should
+        take
+        would
+        software
+        very
+        while
+            com
+            back
+            business
+            had
+            margin
+            has
+            line
+            scheme
+            link
+            was
+            net
+            way
+            new
+            stories
+            perl
+            what
+            job
+            using
+            find
+            you
+            pst
+            our
+            out
+            skin
+            are
+            href
+            http
+            also
+            much
+            read
+            real
+            because
+            most
+            even
+            var
+            div
+            other
+            like
+            look
+            more
+            language
+            programmers
+            something
+            where
+            same
+            year
+            code
+            right
+            font
+            work
+            class
+            search
+            background
+            people
+            just
+            return
+            their
+            title
+            really
+            how
+            them
+            then
+            first
+            they
+            two
+            want
+            see
+            expr
+            amp
+            function
+            world
+            will
+            some
+            use
+            all
+            life
+            tag
+            which
+            comment
+            one
+            url
+            prop
+            could
+            include
+            blog
+            score
+            used
+            nbsp
+
+
+Here's a sample of my classification output:
+
+URL: http://www.boredatwork.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+*** Error: bad response code (302): http://clojure.org/.
+URL: http://code.google.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://archiva.apache.org/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://code.google.com/webtoolkit/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://msdn.microsoft.com/en-us/library/y4wf33f0(VS.80).aspx
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://github.com/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://docs.codehaus.org/display/GRAILS/Plugins
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://grails.org/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://norvig.com/21-days.html
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://allcheapfares.com/Airdestination/Airfare/?Aid=5184&Source=Google&refid=cheap+airline+ticket&gclid=CJ738L3LtZ0CFRBM5QodQG_ijg
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://chowhound.chow.com/boards
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://groovy.codehaus.org/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://g4tv.com/games/index/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://almostfearless.com/2009/08/17/30-days-to-redesign-your-life-and-travel-the-world/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://courses.golfreview.com/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://java.sun.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://jruby.org/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://travel.aol.com/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://www.cbs.com/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://java.sun.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://en.wikipedia.org/wiki/.NET_Framework
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://www.imdb.com/title/tt0938283/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://oreilly.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://en.wikipedia.org/wiki/Design_Patterns
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://rspec.info/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://www.startrek.com/startrek/view/index.html
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://rubyonrails.org/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://developers.slashdot.org/story/09/07/20/197233/Collaborative-Software-For-Pair-Programming
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://en.wikipedia.org/wiki/Groovy
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://shootout.alioth.debian.org/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://www.syfy.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://travel.latimes.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://docs.python.org/tutorial/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://javablogs.com/Welcome.action
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://java.sun.com/docs/books/tutorial/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+*** Error: bad response code (301): http://news.bbc.co.uk/1/hi/magazine/8297211.stm.
+URL: http://travel.nytimes.com/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://stackoverflow.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+*** Error: bad response code (302): http://visitmaryland.org/.
+URL: http://en.wikipedia.org/wiki/Ruby_(programming_language)
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://travel.state.gov/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+URL: http://maps.google.com/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://www.actionscript.org/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+*** Error: bad response code (302): http://www.amtrak.com/.
+^XURL: http://www.apache.org/
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://opendotdotdot.blogspot.com/2009/09/russias-new-holiday-programmers-day.html
+AUTO CLASSIFIED: Programming
+USER CLASSIFIED: programming
+====
+URL: http://sqlzoo.net/
+AUTO CLASSIFIED: Travel
+USER CLASSIFIED: programming
+====
+
