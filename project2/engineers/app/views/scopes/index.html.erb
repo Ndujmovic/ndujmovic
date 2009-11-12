@@ -1,0 +1,22 @@
+<h1>Listing scopes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @scopes.each do |scope| %>
+  <tr>
+    <td><%=h scope.name %></td>
+    <td><%=h scope.description %></td>
+    <td><%= link_to 'Show', scope %></td>
+    <td><%= link_to 'Edit', edit_scope_path(scope) %></td>
+    <td><%= link_to 'Destroy', scope, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New scope', new_scope_path %>

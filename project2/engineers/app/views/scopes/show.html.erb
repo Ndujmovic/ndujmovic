@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @scope.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @scope.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_scope_path(@scope) %> |
+<%= link_to 'Back', scopes_path %>

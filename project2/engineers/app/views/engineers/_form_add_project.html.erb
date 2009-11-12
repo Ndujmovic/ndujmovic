@@ -1,0 +1,37 @@
+
+<% form_for (setup_engineer(@engineer)) do |f| -%>
+<p>&nbsp;</p>
+<fieldset>
+<legend>Add Project Assignment to <%= @engineer.fname %></legend>
+<% f.fields_for :project_assignments do |pa| %>
+
+  <div class="group">
+<p><%= pa.label :name, "Project Name" %> 
+<%= pa.collection_select(:project_id, Project.all, :name, :id) %> 
+</p>
+</div>
+
+  <div class="group">
+<p>
+<%= pa.date_select :sdate %> 
+to
+<%= pa.date_select :edate %> 
+</p>
+</div>
+
+  <div class="group">
+       <%= pa.label :scope_id, "Project Scope", :class => :label %>
+            <%= pa.collection_select(:scope_id, Scope.all, :id, :name) %>
+              </div>
+
+
+<% end %> 
+
+
+<div class="group navform">
+<p><%= f.submit 'Add Assignment' %></p>
+</div>
+
+</fieldset>
+
+<% end -%>

@@ -1,0 +1,71 @@
+<div class="block">
+<div class="secondary-navigation">
+<ul>
+<li class="first"><%= link_to 'List', engineers_path  %></li>
+<li><%= link_to 'New', new_engineer_path %></li>
+<li class="active"><%= link_to 'Show', engineer_path %></li>
+</ul>
+<div class="clear"></div>
+</div>          
+<div class="content">
+<div class="inner">
+
+<h3><%= @engineer.fname %>'s Info (<%= link_to 'Edit', edit_engineer_path(@engineer) %>)</h3>
+
+<p>
+<b>First Name:</b>
+<%= @engineer.fname %>
+</p>
+
+<p>
+<b>Last Name:</b>
+<%= @engineer.lname %>
+</p>
+
+<p>
+<b>Resume:</b>
+<%= @engineer.resume %>
+</p>
+
+<p>
+<b>Skill Level:</b>
+<%= SkillLevel.find_by_id(@engineer.skill_level_id).name %>
+</p>
+
+<p>
+<b>Years of Experience:</b>
+<%= @engineer.years_of_experience %>
+</p>
+
+<p>
+<b>Tags:</b>
+<%= @engineer.tag_list %>
+</p>
+
+<p>
+<fieldset>
+<legend>Resume</legend>
+<pre><%= @engineer.resume %></pre>
+</fieldset>
+</p>
+
+<p></p>
+
+
+<h3><%= @engineer.fname %>'s Assignments</h3>
+<table> 
+<tr> 
+<th>Name</th> 
+<th>Description</th> 
+<th>Start Date</th> 
+<th>End Date</th> 
+</tr>
+<%= render(:partial => "shared/project_assignment", :collection => @engineer.project_assignments) %>
+</table>
+
+<%= render(:partial => 'form_add_project') -%>
+</div>
+</div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

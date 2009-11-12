@@ -1,0 +1,38 @@
+
+  <div class="group">
+    <%= f.label :fname, "First Name", :class => :label %>
+    <%= f.text_field :fname, :class => 'text_field' %>
+    <span class="description">Ex: John</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :lname, "Last Name", :class => :label %>
+    <%= f.text_field :lname, :class => 'text_field' %>
+    <span class="description">Ex: Doe</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :resume, "Resume", :class => :label %>
+    <%= f.text_area :resume, :class => 'text_area' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :skill_level_id, "Skill Level", :class => :label %>
+    <%= f.collection_select(:skill_level_id, SkillLevel.all, :id, :name) %>
+  </div>
+
+  <div class="group">
+    <%= f.label :years_of_experience, "Years of Experience", :class => :label %>
+    <%= f.text_field :years_of_experience, :class => 'text_field' %>
+    <span class="description">Ex: 3</span>
+  </div>
+
+  <div class="group"> 
+  <%= f.label 'Tag List (Delimiter = ,)' %><br /> 
+  <%= f.text_field :tag_list %> 
+  </div> 
+
+  <div class="group navform">
+  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', engineers_path %>
+  </div>
