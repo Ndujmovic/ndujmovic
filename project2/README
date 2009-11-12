@@ -1,0 +1,9 @@
+# PROJECT 2 - Engineers/Projects Manager
+# Nancy Dujmovic
+
+This project involves developing CRUD functionality for Engineers and Projects, and allowing projects to be assigned to engineers.  It offers an interface where a user can create their own engineer or project, and then tie the two together by Assigning a Project.
+
+Users can also tag a project or an engineer, and then filter their search results based on tags.
+
+One hangup I had was that the acts_as_taggable_on_steroids did not interact well with will_paginate, which was included with my theme, so I removed the pagination feature.
+
