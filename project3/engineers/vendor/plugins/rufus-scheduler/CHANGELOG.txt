@@ -1,0 +1,23 @@
+
+= rufus-scheduler CHANGELOG.txt
+
+
+== rufus-scheduler - 2.0.3    not yet released
+
+- made sure Schedulables with a call(job) method were OK when passed as second
+  parameter (thanks Nate Wiger)
+
+
+== rufus-scheduler - 2.0.2    released 2009/10/31
+
+- unified JobQueue and CronJobQueue, and handed @last_second management to the
+  latter
+- #trigger_block method for easier override
+- passing :job => job among Schedulable trigger parameters
+
+
+== rufus-scheduler - 2.0.1    released 2009/05/07
+== rufus-scheduler - 2.0.0    released 2009/05/07
+
+- initial release
+

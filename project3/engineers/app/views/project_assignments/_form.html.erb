@@ -1,0 +1,29 @@
+
+  <div class="group">
+    <%= f.label :project_id, "Project", :class => :label %>
+    <%= f.collection_select(:project_id, Project.all, :id, :name) %>
+  </div>
+
+  <div class="group">
+    <%= f.label :engineer_id, "Engineer", :class => :label %>
+    <%= f.collection_select(:engineer_id, Engineer.all, :id, :lname) %>
+  </div>
+
+  <div class="group">
+     <%= f.label :scope_id, "Project Scope", :class => :label %>
+     <%= f.collection_select(:scope_id, Scope.all, :id, :name) %>
+  </div>
+
+  <div class="group">
+    <%= f.label :sdate, "Start Date", :class => :label %>
+    <%= f.date_select :sdate, :class => 'date_select' %>
+  </div>
+
+  <div class="group">
+    <%= f.label :edate, "End Date", :class => :label %>
+    <%= f.date_select :edate, :class => 'date_select' %>
+  </div>
+        
+<div class="group navform">
+  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', project_assignments_path %>
+</div>

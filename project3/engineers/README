@@ -1,0 +1,84 @@
+#################
+# Project 3      #
+# Nancy Dujmovic #
+# 12/10/2009     #
+##################
+
+# Feature Set #1 - File Upload (Resume) Functionality (30 Points)
+#
+# A single resume (text) is associated with an Engineer 
+#  * On Resume or Engineer 'New' and 'Edit' screens implement File Upload 
+#    for a resume
+#  * Show the resume content on the Engineer 'Show' and 'Edit' screens
+#  * On the Resume or Engineer 'Edit' screen permit a resume to be deleted 
+#    and/or replaced
+
+I used PaperClip for file uploads.  Then I added a method in the Engineer
+model that reads the resume file if the format is "text/plain."  I displayed
+the resume via <textarea /> .
+
+# Feature Set #2 - Search (30 points)
+#
+# Implement 'Google-suggest' like search capabilities for Engineers and 
+# Projects. Search boxes should be visible on all screens and implemented 
+# with partials for the view. Search can be implemented with Rails finders 
+# or with text search e.g. Solr or Ferret 
+
+I used Solr for searching the names of projects and engineers.  Then I used
+autocomplete to guess at either the last name of an engineer or the name of
+the project.  I misinterpreted the requirements and made one search box for 
+either project or engineer instead of having separate ones.  (I think it
+simplifies the interface, too.)  The engineers pages suggest engineer last names,
+while the project pages suggest project names.
+
+# Feature Set #3 - Background Processing and Resume Similarity (30 points)
+#
+# Run a background process to calculate similarities between engineers. On an 
+# Engineer's Show page, list the top 5 engineers that are most similar (from 
+# most similar to least). Similar engineers are hyperlinked to load that 
+# Engineer's 'Show' page. 
+
+This gave me a lot of issues.  First, I had trouble installing BackgrounDRB,
+as the link was broken.  After a lot of trouble and assistance from the message
+boards, I finally got it installed.  Then I tried to run through the example
+tutorial in the slides, but I could not get the BackgrounDRB server to run.  I
+decided to switch to another Ruby Background Job Processor, and I chose Delayed
+Jobs, but that turned out to be just for adding jobs in a queue, not so much
+running a job every few seconds.  I settled on Rufus Scheduler
+(http://rufus.rubyforge.org/rufus-scheduler/), which was a lot easier to set up
+and get going.  I added the scheduling code to my engineers controller.  Then
+I tried to include my tf_idf.rb functions from the first project.  First I tried
+to add it as a gem, then I added the file to lib/.  However, the code BROKE
+when I tried to require it to the engineers controller.  I realized that it was
+breaking because of the class functions that were declared in tf_idf.rb --
+I added functions to the String and Array classes.  I didn't know how to get
+around it, so I just rewrote the functions so that they don't belong to any
+class.
+
+The scheduling code should:
+- read the engineers' resumes
+- write the files to the resumes/ folder
+- call methods in tf_idf.rb to find the cosine similarities
+- parse through the results and find the cosine similarities for its own resume
+vs everybody else's
+every few seconds.
+
+Some other issues I had
+- many issues with trying to include tf_idf.rb -- I tried to add it to
+/config/initializers, or required it in config/environment.rb , etc...
+- my schema.rb sometimes was not modified for certain migrations, so some tables
+were not created.  I got around this by manually updating schema.rb with the table
+I needed, then running 'rake db:schema:load.'
+
+# Feature Set #4 (EXTRA CREDIT) - AJAX-enabled screen for an Engineer's 
+# contact info (20 points)
+#
+# Add Entities to capture contact information for an Engineer
+# Engineer can have 0..* Email addresses (type, address)
+# Engineer can have 0..* Phone numbers (type, number)
+
+I began to add email addresses for engineers -- I created an engineers table
+and allowed users to add email addresses via the engineers page.  I also added
+some AJAX to the engineers screen -- their names can be editted on the same
+show screen, rather than having to bring up the entire form.
+

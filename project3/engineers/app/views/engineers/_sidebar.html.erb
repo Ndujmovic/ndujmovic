@@ -1,0 +1,53 @@
+
+<% if defined? @engineer %>
+<div class="block">
+  <h3>Resume</h3>
+  <div class="content">
+<% if @engineer.resources %> 
+<ul> 
+<% @engineer.resources.each do |r| %> 
+
+<li>
+  <a href="<%=r.f.url%>"> <%= r.f_file_name %> (Link)</a>
+ <%= link_to 'destroy', resource_path(r), :method => :delete, :confirm => 'Are you sure?' %>
+  
+</li> 
+
+<% end %> 
+</ul>
+<% else %>
+No resume.
+<% end %>
+</div>
+</div>
+<% end %>
+
+<div class="block">
+<h3>Tags</h3>
+<div class="content">
+<ul> 
+<% @tags = Engineer.tag_counts %> 
+<% tag_cloud @tags, %w(tag1 tag2 tag3 tag4) do |tag, css_class| %>
+<%= link_to tag.name, { :action => :tag, :id => 
+    tag.name }, :class => css_class %> 
+    <% end %> 
+    </ul> 
+  </div>
+</div>
+
+<div class="search">
+  <h3>Search</h3>
+  <%= render (:partial => "/shared/search_like_google.html.erb") %>
+</div>
+
+<% if !@engineer.nil? %>
+<div class="block"> 
+  <h3>Matches</h3> 
+    <!-- Now keep it updated --> 
+      <%= periodically_call_remote( :url =>{ :action => 'get_matches', :id => @engineer.id } ,  :frequency => 10) %> 
+      <ul class="navigation"> 
+      <div id="match_div"> 
+      </div> 
+      </ul> 
+</div> 
+<% end %>

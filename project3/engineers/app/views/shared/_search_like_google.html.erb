@@ -1,0 +1,5 @@
+<% form_for(:engineer, :url => {:controller => 'searches', :action => 'search'}) do |f| %>
+  <div class="auto_complete" id="engineer_lname_auto_complete"></div>
+    <%= text_field_with_auto_complete :engineer, :lname %>
+    <p><%= submit_tag "Load" %> </p>
+<% end %>

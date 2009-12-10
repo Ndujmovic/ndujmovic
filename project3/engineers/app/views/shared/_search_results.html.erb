@@ -1,0 +1,35 @@
+<div class="block">
+<div class="content">
+
+<div class="inner">
+<% 
+
+@products = @results.docs
+@total_hits = @results.total_hits
+%>
+
+<h3>Search Results</h3>
+
+   <div class="inner">
+   <ol>
+        <% @products.each do |p| 
+        -%>
+
+        <% if p.is_a?(Engineer) then %>
+        <li><%= link_to "#{p.fname} #{p.lname}", engineer_path(p) %>
+        <i>(Engineer)</i>
+        </li>
+        <% elsif p.is_a?(Project) then %>
+        <li><%= link_to p.name, project_path(p) %>
+        <i>(Project)</i>
+        </li>
+        <% end %>
+        <% end %>
+   </ol>
+   </div>
+
+   <p align="right"><%= @total_hits %> hits returned.</p>
+
+</div>
+</div>
+</div>

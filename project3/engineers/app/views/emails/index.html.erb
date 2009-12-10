@@ -1,0 +1,24 @@
+<h1>Listing emails</h1>
+
+<table>
+  <tr>
+    <th>Address</th>
+    <th>Addresstype</th>
+    <th>Engineer</th>
+  </tr>
+
+<% @emails.each do |email| %>
+  <tr>
+    <td><%=h email.address %></td>
+    <td><%=h email.addresstype %></td>
+    <td><%=h email.engineer_id %></td>
+    <td><%= link_to 'Show', email %></td>
+    <td><%= link_to 'Edit', edit_email_path(email) %></td>
+    <td><%= link_to 'Destroy', email, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New email', new_email_path %>

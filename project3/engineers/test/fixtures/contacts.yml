@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  email: 
+  type: 
+  engineer_id: 
+
+two:
+  email: 
+  type: 
+  engineer_id: 

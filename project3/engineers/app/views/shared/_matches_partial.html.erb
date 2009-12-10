@@ -1,0 +1,13 @@
+<% engineer = matches_partial %> 
+<!-- Query for list of matches in desc order by score limit 5 --> 
+<!-- Stubbed for example --> 
+<% if !@similar_engineers.nil? %>
+<% @similar_engineers.each do |key, val| %>
+  <% current_engineer = Engineer.find_by_id(key) %>
+  <% if (!current_engineer.nil?) %>
+<li><%= link_to "#{current_engineer[:name]}: #{val}", { :action => :show, :id => key } %></li> 
+  <% else %>
+   <li><%= key %> <%= val %></li>
+   <% end %>
+<% end %>
+<% end %>
